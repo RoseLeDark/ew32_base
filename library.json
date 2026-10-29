@@ -1,0 +1,22 @@
+{
+  "name": "ew32_base",
+  "version": "0.0.2",
+  "description": "base lib for ew32_devm and ew32_driver libs",
+  "keywords": "device, device manager, vfs",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/RoseLeDark/ew32_base"
+  },
+  "authors":
+  [
+    {
+      "name": "Anber-Sophia Schroeck",
+      "email": "anbersophia.schroeck@gmail.com"
+    }
+  ],
+  "license": "EUPL-12",
+  "homepage": "https://github.com/RoseLeDark/ew32_base/",
+  "frameworks": "arduino",
+  "platforms": "*"
+}
