@@ -15,7 +15,7 @@
       "email": "anbersophia.schroeck@gmail.com"
     }
   ],
-  "license": "EUPL-12",
+  "license": "EUPL-1.2",
   "homepage": "https://github.com/RoseLeDark/ew32_base/",
   "frameworks": "arduino",
   "platforms": "*"
