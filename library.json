@@ -15,6 +15,15 @@
       "email": "anbersophia.schroeck@gmail.com"
     }
   ],
+  "examples": [
+      {
+          "name": "example",
+          "base": "example/",
+          "files": [
+              "arduino.c"
+          ]
+      }
+    ],
   "license": "EUPL-1.2",
   "homepage": "https://github.com/RoseLeDark/ew32_base/",
   "frameworks": "arduino",

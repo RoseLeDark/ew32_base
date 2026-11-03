@@ -1,6 +1,15 @@
 # Changelog
 
-## Version 0.2.0
+## Version 0.3.0
+
+### Added
+add ew32_spinlock atomic spinlock handling 
+add example in example/arduino.cpp
+add Changelog
+
+### Change
+change logging, this used now atomic lock or mutex see ew32_config.h
+update version to 0.3.0
 
 ---
 
