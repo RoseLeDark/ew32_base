@@ -1,6 +1,6 @@
 {
   "name": "ew32_base",
-  "version": "0.0.2",
+  "version": "0.1.5",
   "description": "base lib for ew32_devm and ew32_driver libs",
   "keywords": "device, device manager, vfs",
   "repository":

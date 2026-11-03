@@ -40,7 +40,8 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
     va_end(arg);
 
     if(___handle) return ___handle(level, tag, temp);
-
+  
+    
     if(temp != loc_buf) {
         free(temp);
     }
