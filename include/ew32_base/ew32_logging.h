@@ -27,7 +27,8 @@ extern "C" {
 
 typedef int8_t (* logging_handler)(uint8_t level, const char* tag, const char* text);
 
-int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel);
+// return the number of the new handler, or -1 if no more handlers can be added
+int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLevel);
 /**
  * Zentrale Logging-Funktion.
  * 
@@ -45,12 +46,12 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...);
  * @param level Das minimale auszugebende Log-Level
  * @return      0 bei Erfolg, Fehlercode ungleich 0 bei Fehlschlag
  */
-void xewSetLoggingLevel(uint8_t level);
+void xewSetLoggingLevel(uint8_t index, uint8_t minLevel, uint8_t maxLevel);
 
 /**
  * Gibt das aktuell aktive minimale Log-Level zurück.
  */
-uint8_t xewGetLoggingLevel(void);
+uint8_t xewGetLoggingLevel(uint8_t index);
 
 #ifdef __cplusplus
 }

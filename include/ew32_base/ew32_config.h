@@ -21,7 +21,7 @@
 #define EW32_PLATFORM_TAKSAPI_ASYNC                 3   /**< Raspberry PI Pico FreeRTOS + async as driver tasks */
 /// @}
 
-
+#define EW32_LOGGING_NUMOFHANDLER                   2 
 /// ================ DO NOT EDIT AFTER THIS LINE ================
 
 
