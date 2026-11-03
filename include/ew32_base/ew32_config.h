@@ -13,8 +13,9 @@
 /// @{
 #define EW32_PLATFORM_ESP                       1    /**< Espressif ESP-IDF platform target. */
 #define EW32_PLATFORM_ARDUINO                   2    /**< Arduino framework target. */
-#define EW32_PLATFORM_STM32                     3    /**< STM32 microcontroller target. */
-#define EW32_PLATFORM_RPPICO                    4    /**< Raspberry PI Pico microcontroller target. */
+#define EW32_PLATFORM_ARDUINO_ESP32             3    /**< Arduino ESP32 framework target. */
+#define EW32_PLATFORM_STM32                     4    /**< STM32 microcontroller target. */
+#define EW32_PLATFORM_RPPICO                    5    /**< Raspberry PI Pico microcontroller target. */
 
 #define EW32_PLATFORM_TAKSAPI_RTOS                  1   /**< RTOS as driver tasks */
 #define EW32_PLATFORM_TAKSAPI_TIMER                 2   /**< timer as driver tasks */
@@ -29,6 +30,19 @@
 #define EW32_LOGGING_LOCKAPI_CSECTION               2
 #define EW32_LOGGING_LOCKAPI_MUTEX                  3
 
+#define EW32_LOGGING_LEVEL_DEBUG    0
+#define EW32_LOGGING_LEVEL_INFO     1
+#define EW32_LOGGING_LEVEL_WARNING  2
+#define EW32_LOGGING_LEVEL_ERROR    3
+#define EW32_LOGGING_LEVEL_CRITICAL 4
+
+#ifndef EW32_LOGGING_MIN_LEVEL
+#ifdef _DEBUG
+    #define EW32_LOGGING_MIN_LEVEL  EW32_LOGGING_LEVEL_DEBUG
+#else
+    #define EW32_LOGGING_MIN_LEVEL  EW32_LOGGING_LEVEL_ERROR
+#endif
+#endif
 
 
 /// ================ DO NOT EDIT AFTER THIS LINE ================

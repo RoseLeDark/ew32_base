@@ -3,23 +3,52 @@
 #include <stdint.h>
 #include "ew32_config.h"
 /* Log-Level Definitionen */
-#define EW32_LOGGING_LEVEL_DEBUG    0
-#define EW32_LOGGING_LEVEL_INFO     1
-#define EW32_LOGGING_LEVEL_WARNING  2
-#define EW32_LOGGING_LEVEL_ERROR    3
-#define EW32_LOGGING_LEVEL_CRITICAL 4
 
-#define xewLoggingDebug1(tag, text, ARG)    xewLoggingSerial(EW32_LOGGING_LEVEL_DEBUG, (tag), (text), ARG )
-#define xewLoggingInfo1(tag, text, ARG )     xewLoggingSerial(EW32_LOGGING_LEVEL_INFO, (tag), (text), ARG )
-#define xewLoggingWarning1(tag, text, ARG )  xewLoggingSerial(EW32_LOGGING_LEVEL_WARNING, (tag), (text), ARG )
-#define xewLoggingError1(tag, text, ARG )    xewLoggingSerial(EW32_LOGGING_LEVEL_ERROR, (tag), (text), ARG )
-#define xewLoggingCritical1(tag, text, ARG ) xewLoggingSerial(EW32_LOGGING_LEVEL_CRITICAL, (tag), (text), ARG )
 
+#if EW32_LOGGING_MIN_LEVEL <= EW32_LOGGING_LEVEL_DEBUG
 #define xewLoggingDebug(tag, text)    xewLoggingSerial(EW32_LOGGING_LEVEL_DEBUG, (tag), (text) )
+#define xewLoggingDebug1(tag, text, ARG)    xewLoggingSerial(EW32_LOGGING_LEVEL_DEBUG, (tag), (text), ARG )
+#else
+#define xewLoggingDebug(tag, text)  
+#define xewLoggingDebug1(tag, text, ARG)   
+#endif
+
+#if EW32_LOGGING_MIN_LEVEL <= EW32_LOGGING_LEVEL_INFO
 #define xewLoggingInfo(tag, text )     xewLoggingSerial(EW32_LOGGING_LEVEL_INFO, (tag), (text) )
+#define xewLoggingInfo1(tag, text, ARG )     xewLoggingSerial(EW32_LOGGING_LEVEL_INFO, (tag), (text), ARG )
+#else
+#define xewLoggingInfo(tag, text )    
+#define xewLoggingInfo1(tag, text, ARG )  
+#endif
+
+#if EW32_LOGGING_MIN_LEVEL <= EW32_LOGGING_LEVEL_WARNING
 #define xewLoggingWarning(tag, text )  xewLoggingSerial(EW32_LOGGING_LEVEL_WARNING, (tag), (text) )
+#define xewLoggingWarning1(tag, text, ARG )  xewLoggingSerial(EW32_LOGGING_LEVEL_WARNING, (tag), (text), ARG )
+#else
+#define xewLoggingWarning(tag, text)   
+#define xewLoggingWarning1(tag, text, ARG ) 
+#endif
+
+#if EW32_LOGGING_MIN_LEVEL <= EW32_LOGGING_LEVEL_ERROR
 #define xewLoggingError(tag, text )    xewLoggingSerial(EW32_LOGGING_LEVEL_ERROR, (tag), (text) )
+#define xewLoggingError1(tag, text, ARG )    xewLoggingSerial(EW32_LOGGING_LEVEL_ERROR, (tag), (text), ARG )
+#else
+#define xewLoggingError(tag, text) 
+#define xewLoggingError1(tag, text, ARG )   
+#endif
+
+#if EW32_LOGGING_MIN_LEVEL <= EW32_LOGGING_LEVEL_CRITICAL
 #define xewLoggingCritical(tag, text ) xewLoggingSerial(EW32_LOGGING_LEVEL_CRITICAL, (tag), (text) )
+#define xewLoggingCritical1(tag, text, ARG ) xewLoggingSerial(EW32_LOGGING_LEVEL_CRITICAL, (tag), (text), ARG )
+#else
+#define xewLoggingCritical(tag, text)    
+#define xewLoggingCritical1(tag, text, ARG )
+#endif
+
+
+
+
+
 
 #ifdef __cplusplus
 extern "C" {

@@ -44,6 +44,9 @@ int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLev
     return _ret;
 }
 int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
+    if( EW32_LOGGING_MIN_LEVEL > level) return 1;
+
+
     char loc_buf[64];
     char * temp = loc_buf;
     va_list arg;
@@ -54,13 +57,13 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
     va_end(copy);
     if(len < 0) {
         va_end(arg);
-        return 0;
+        return 2;
     }
     if(len >= (int)sizeof(loc_buf)){ 
         temp = (char*) malloc(len+1);
         if(temp == NULL) {
             va_end(arg);
-            return 0;
+            return 2;
         }
         len = vsnprintf(temp, len+1, text, arg);
     }
@@ -95,7 +98,7 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
 
 void xewSetLoggingLevel(uint8_t index, uint8_t minLevel, uint8_t maxLevel) {
     if(index < EW32_LOGGING_NUMOFHANDLER) {
-        ___ew32_logging_handle[index].minLevel = minLevel;
+        ___ew32_logging_handle[index].minLevel =  (EW32_LOGGING_MIN_LEVEL <= minLevel) ? EW32_LOGGING_MIN_LEVEL : minLevel;
         ___ew32_logging_handle[index].maxLevel = maxLevel;
     }
 }

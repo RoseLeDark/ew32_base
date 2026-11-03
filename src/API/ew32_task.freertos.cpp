@@ -1,3 +1,4 @@
+#include "ew32_base/ew32_config.h"
 #include "ew32_devm/ew32_config.h"
 
 #if EW32_TASKAPI_PLATFORM == EW32_PLATFORM_TAKSAPI_RTOS
@@ -12,16 +13,7 @@
 #include "FreeRTOSConfig.h"
 #include "task.h"
 #include "semphr.h"
-#endif
 
-#if EW32_PLATFORM == EW32_PLATFORM_ESP
-#include <stdio.h>
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
-#include <freertos/semphr.h>
-#endif
-
-#if EW32_PLATFORM == EW32_PLATFORM_RPPICO 
 extern "C" {
 
     void idle_task (void*) {
@@ -30,6 +22,14 @@ extern "C" {
         }
     }
 }
+
+#endif
+
+#if EW32_PLATFORM == EW32_PLATFORM_ESP || EW32_PLATFORM ==  EW32_PLATFORM_ARDUINO_ESP32
+#include <stdio.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <freertos/semphr.h>
 #endif
 
 void ew32_tasksystem_init() {
