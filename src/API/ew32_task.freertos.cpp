@@ -49,7 +49,7 @@ void ew32_tasksystem_init() {
 }
 
 uint8_t ew32_task_create(ew32_task_handle task, uint16_t stackSize, uint8_t prio, const char* pcName, 
-                        void* userdata, uint8_t core, ew32_task_t** tk) {
+                        void* userdata, uint8_t core, ew32_task_t* tk) {
     
     BaseType_t _ret = 1;
     #if EW32_PLATFORM == EW32_PLATFORM_RPPICO
@@ -65,7 +65,7 @@ uint8_t ew32_task_create(ew32_task_handle task, uint16_t stackSize, uint8_t prio
     return _ret;
 }
 
-void ew32_task_delay(uint16_t delay) {
+void ew32_task_delay(uint32_t delay) {
 
     #if EW32_PLATFORM == EW32_PLATFORM_RPPICO
         sleep_ms(delay);

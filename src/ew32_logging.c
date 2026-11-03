@@ -4,13 +4,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <stdatomic.h>
 
 #include "ew32_base/ew32_config.h"
+#include <ew32_base/ew32_spinlock.h>
+#include <ew32_base/ew32_api.h>
 
 struct logging_handler_struct {
     logging_handler handle;
     uint8_t minLevel;
     uint8_t maxLevel;
+    #if EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_ATOMIC
+    ew32_spinlock_t lock;
+    #elif EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_MUTEX
+    ew32_semaphore_t lock;
+    #endif
 };
 struct logging_handler_struct ___ew32_logging_handle[EW32_LOGGING_NUMOFHANDLER] = {NULL};
 uint8_t __index = 0;
@@ -23,6 +31,12 @@ int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLev
     ___ew32_logging_handle[__index].handle = handle;
     ___ew32_logging_handle[__index].minLevel = minLevel;
     ___ew32_logging_handle[__index].maxLevel = maxLevel;
+    #if EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_ATOMIC
+        ew32_spinlock_init( &___ew32_logging_handle[__index].lock );
+    #elif EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_MUTEX
+   ___ew32_logging_handle[__index].lock = ew32_semaphore_create(EW32_SEMAPHORE_BIN_MUTEX);
+    #endif
+
 
     int8_t _ret = __index;
     __index++;
@@ -52,6 +66,12 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
     }
     va_end(arg);
 
+    #if EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_ATOMIC
+        ew32_spinlock_lock(&___ew32_logging_handle[__index].lock );
+    #elif EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_MUTEX
+        ew32_semaphore_lock(___ew32_logging_handle[__index].lock, EW32_INFINITY);
+    #endif
+
     for(int i=0; i<__index; i++) {
         if(level >= ___ew32_logging_handle[i].minLevel && level <= ___ew32_logging_handle[i].maxLevel) {
             if(___ew32_logging_handle[i].handle != NULL) {
@@ -59,7 +79,12 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
             }
         }
     }
-  
+    
+    #if EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_ATOMIC
+        ew32_spinlock_unlock(&___ew32_logging_handle[__index].lock );
+    #elif EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_MUTEX
+        ew32_semaphore_unlock(___ew32_logging_handle[__index].lock);
+    #endif
     
     if(temp != loc_buf) {
         free(temp);

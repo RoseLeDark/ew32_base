@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-
+#include "ew32_config.h"
 /* Log-Level Definitionen */
 #define EW32_LOGGING_LEVEL_DEBUG    0
 #define EW32_LOGGING_LEVEL_INFO     1

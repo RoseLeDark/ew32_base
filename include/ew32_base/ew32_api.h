@@ -26,9 +26,9 @@ extern void ew32_main_task(void *data);
 void ew32_tasksystem_init();
 
 uint8_t ew32_task_create(ew32_task_handle task, uint16_t stackSize, uint8_t prio, const char* pcName, 
-                         void* userdata, uint8_t core, ew32_task_t** tk);
+                         void* userdata, uint8_t core, ew32_task_t* tk);
 
-void ew32_task_delay(uint16_t delay);
+void ew32_task_delay(uint32_t delay);
 void ew32_task_suspend(ew32_task_t task);
 void ew32_task_resume(ew32_task_t task);
 

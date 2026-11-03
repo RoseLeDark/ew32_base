@@ -21,7 +21,16 @@
 #define EW32_PLATFORM_TAKSAPI_ASYNC                 3   /**< Raspberry PI Pico FreeRTOS + async as driver tasks */
 /// @}
 
+#ifndef EW32_LOGGING_NUMOFHANDLER
 #define EW32_LOGGING_NUMOFHANDLER                   2 
+#endif 
+
+#define EW32_LOGGING_LOCKAPI_ATOMIC                 1
+#define EW32_LOGGING_LOCKAPI_CSECTION               2
+#define EW32_LOGGING_LOCKAPI_MUTEX                  3
+
+
+
 /// ================ DO NOT EDIT AFTER THIS LINE ================
 
 
@@ -36,12 +45,14 @@
 #if EW32_PLATFORM == EW32_PLATFORM_ESP
 #define EW32_TASKAPI_PLATFORM   EW32_PLATFORM_TAKSAPI_RTOS
 #define EW32_TASK_IDLE_PRIORITY 0U
-
+#define EW32_LOGGING_LOCKAPI    EW32_LOGGING_LOCKAPI_ATOMIC
 #endif
 
 #if EW32_PLATFORM == EW32_PLATFORM_RPPICO
 #define EW32_TASKAPI_PLATFORM   EW32_PLATFORM_TAKSAPI_RTOS
 #define EW32_TASK_IDLE_PRIORITY 0U
+#define EW32_LOGGING_LOCKAPI    EW32_LOGGING_LOCKAPI_ATOMIC
+
 #endif
 
 
