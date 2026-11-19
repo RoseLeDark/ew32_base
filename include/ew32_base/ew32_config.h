@@ -9,6 +9,9 @@
 #define EW32_CONFIG_NO                          0    /**< Negative state flag. */
 /// @}
 
+#define EW32_YES 1
+#define EW32_NO 0
+
 /** @name Target Platform Identifiers */
 /// @{
 #define EW32_PLATFORM_ESP                       1    /**< Espressif ESP-IDF platform target. */
@@ -17,9 +20,8 @@
 #define EW32_PLATFORM_STM32                     4    /**< STM32 microcontroller target. */
 #define EW32_PLATFORM_RPPICO                    5    /**< Raspberry PI Pico microcontroller target. */
 
-#define EW32_PLATFORM_TAKSAPI_RTOS                  1   /**< RTOS as driver tasks */
-#define EW32_PLATFORM_TAKSAPI_TIMER                 2   /**< timer as driver tasks */
-#define EW32_PLATFORM_TAKSAPI_ASYNC                 3   /**< Raspberry PI Pico FreeRTOS + async as driver tasks */
+#define EW32_PLATFORM_OSAPI_FREERTOS                  1   /**< RTOS as driver tasks */
+
 /// @}
 
 #ifndef EW32_LOGGING_NUMOFHANDLER
@@ -56,20 +58,12 @@
 #error "No Platform Defined, please set build flag -DEW32_PLATFORM={PLATFORMID}" 
 #endif
 
-#if EW32_PLATFORM == EW32_PLATFORM_ESP
-#define EW32_TASKAPI_PLATFORM   EW32_PLATFORM_TAKSAPI_RTOS
-#define EW32_TASK_IDLE_PRIORITY 0U
-#define EW32_LOGGING_LOCKAPI    EW32_LOGGING_LOCKAPI_ATOMIC
-#endif
-
-#if EW32_PLATFORM == EW32_PLATFORM_RPPICO
-#define EW32_TASKAPI_PLATFORM   EW32_PLATFORM_TAKSAPI_RTOS
-#define EW32_TASK_IDLE_PRIORITY 0U
-#define EW32_LOGGING_LOCKAPI    EW32_LOGGING_LOCKAPI_ATOMIC
-
-#endif
-
-
 #define EW32_WEAK           __attribute__((weak))
 #define EW32_WEAK_INLINE    __attribute__((weak, always_inline)) inline
 #define EW32_PACKED         __attribute__((packed))
+
+
+typedef uint8_t             ew32_bool_t;
+
+#define ewTRUE              1
+#define ewFALSE             0
