@@ -8,7 +8,7 @@
 
 #include "ew32_base/ew32_config.h"
 #include <ew32_base/ew32_spinlock.h>
-#include <ew32_base/ew32_api.h>
+#include <ew32_base/osa/ew32_api.h>
 
 struct logging_handler_struct {
     logging_handler handle;

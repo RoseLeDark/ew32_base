@@ -20,17 +20,9 @@
 
 #include <stdio.h>
 #include "ew32_base/osa/ew32_api.h"
-#include "ew32_base/ew32_error.h"
-// TODO: Add C source content
-
-#ifdef EW32_PLATFORM == EW32_PLATFORM_ESP
-#include "ew32_base/ew32_logging.h"
 
 #if EW32_PLATFORM == EW32_PLATFORM_ESP || EW32_PLATFORM ==  EW32_PLATFORM_ARDUINO_ESP32
-#include <stdio.h>
 #include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
-#include <freertos/semphr.h>
 #endif
 
 void ew32_osa_cli() {
@@ -43,4 +35,4 @@ void ew32_osa_sti() {
 uint64_t         ew32_osa_getticks() {
     return xTaskGetTickCount();
 }
-#endif
+
