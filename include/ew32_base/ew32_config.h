@@ -48,7 +48,12 @@
 
 
 /// ================ DO NOT EDIT AFTER THIS LINE ================
+#define EW32_BASE_VERSION_MAYOR     0
+#define EW32_BASE_VERSION_MINOR     4
+#define EW32_BASE_VERSION_SUB       3
 
+#define EW32_BASE_VERSION_STRING    "0.4.3"
+#define EW32_BASE_VERSION           0x000403
 
 #ifndef EW32_FREERTOS_ON_CORE
 #define EW32_FREERTOS_ON_CORE 0
