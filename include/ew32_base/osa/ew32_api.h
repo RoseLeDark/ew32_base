@@ -33,6 +33,9 @@
 #if EW32_PLATFORM == EW32_PLATFORM_ESP
 #define EW32_TASKAPI_PLATFORM   EW32_PLATFORM_OSAPI_FREERTOS
 #define EW32_LOGGING_LOCKAPI    EW32_LOGGING_LOCKAPI_ATOMIC
+#define EW32_TASKAPI_PLATFORM_SUB   1
+
+#include "../hwd/esp32/ew32_hal_esp32.h"
 #include "ew32_freertos.h"
 #endif
 
@@ -77,7 +80,7 @@ void             ew32_osa_task_destroy(ew32_osa_task_t task);
 
 uint32_t        ew32_osa_task_getstate(ew32_osa_task_t task);
 ew32_error_t    ew32_osa_task_setprio(ew32_osa_task_t task, uint8_t prio);
-uint8_t         ew32_osa_task_getprio(ew32_osa_task_t task);
+uint8_t         ew32_osa_task_getprio(ew32_osa_task_t task, uint8_t isr);
 
 
 

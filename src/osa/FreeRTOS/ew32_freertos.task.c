@@ -23,7 +23,7 @@
 #include "ew32_base/ew32_error.h"
 // TODO: Add C source content
 
-#ifdef EW32_PLATFORM == EW32_PLATFORM_ESP
+#if EW32_PLATFORM == EW32_PLATFORM_ESP
 #include "ew32_base/ew32_logging.h"
 
 
@@ -132,7 +132,7 @@ void ew32_osa_task_yield(uint8_t isr) {
 
 }
 
-ew32_osa_task_t  ew32_osa_task_current() {
+ew32_osa_task_t  ew32_osa_task_current(uint8_t isr) {
     return xTaskGetCurrentTaskHandle();
 }
 void     ew32_osa_task_destroy(ew32_osa_task_t task) {

@@ -23,7 +23,7 @@
 #include "ew32_base/ew32_error.h"
 // TODO: Add C source content
 
-#ifdef EW32_PLATFORM == EW32_PLATFORM_ESP
+#if EW32_PLATFORM == EW32_PLATFORM_ESP
 #include "ew32_base/ew32_logging.h"
 
 #if EW32_PLATFORM == EW32_PLATFORM_ESP || EW32_PLATFORM ==  EW32_PLATFORM_ARDUINO_ESP32
