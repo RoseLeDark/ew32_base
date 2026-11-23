@@ -7,8 +7,8 @@
 #include <stdatomic.h>
 
 #include "ew32_base/ew32_config.h"
-#include <ew32_base/ew32_spinlock.h>
-#include <ew32_base/osa/ew32_api.h>
+#include <ew32_base/osa/ew32_osa_spinlock.h>
+#include <ew32_base/osa/ew32_osa_api.h>
 
 struct logging_handler_struct {
     logging_handler handle;
@@ -109,3 +109,4 @@ uint8_t xewGetLoggingLevel(uint8_t index) {
     }
     return 0;
 }
+

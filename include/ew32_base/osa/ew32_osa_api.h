@@ -27,7 +27,7 @@
 #define EW32_TASK_IDLE_PRIORITY     0U
 #define EW32_LOGGING_LOCKAPI        EW32_LOGGING_LOCKAPI_ATOMIC
 #define EW32_TASKAPI_PLATFORM_SUB   2
-#include "ew32_freertos.h"
+#include "ew32_osa_freertos.h"
 #endif
 
 #if EW32_PLATFORM == EW32_PLATFORM_ESP
@@ -36,8 +36,10 @@
 #define EW32_TASKAPI_PLATFORM_SUB   1
 
 #include "../hwd/esp32/ew32_hal_esp32.h"
-#include "ew32_freertos.h"
+#include "ew32_osa_freertos.h"
 #endif
+
+
 
 typedef uint32_t ew32_error_t;
 

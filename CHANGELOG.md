@@ -1,5 +1,10 @@
 # Changelog
+## Version 0.4.5
+## Changed
+- Spinlock is now in osa, "ew32_base/osa/ew32_osa_spinlock.h" rema,e functions ew32_osa_spinlock_{init, lock, unlock} add defines for old api name 
+- rename "ew32_base/osa/ew32_api.h" to "ew32_base/osa/ew32_osa_api.h"
 
+---
 ## Version 0.4.0
 
 ## Changed

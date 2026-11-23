@@ -19,7 +19,7 @@
  */
 
 #include <stdio.h>
-#include "ew32_base/osa/ew32_api.h"
+#include "ew32_base/osa/ew32_osa_api.h"
 
 #if EW32_PLATFORM == EW32_PLATFORM_ESP || EW32_PLATFORM ==  EW32_PLATFORM_ARDUINO_ESP32
 #include <freertos/FreeRTOS.h>

@@ -24,6 +24,7 @@
 
 /// @}
 
+
 #ifndef EW32_LOGGING_NUMOFHANDLER
 #define EW32_LOGGING_NUMOFHANDLER                   2 
 #endif 
@@ -50,10 +51,10 @@
 /// ================ DO NOT EDIT AFTER THIS LINE ================
 #define EW32_BASE_VERSION_MAYOR     0
 #define EW32_BASE_VERSION_MINOR     4
-#define EW32_BASE_VERSION_SUB       3
+#define EW32_BASE_VERSION_SUB       5
 
-#define EW32_BASE_VERSION_STRING    "0.4.3"
-#define EW32_BASE_VERSION           0x000403
+#define EW32_BASE_VERSION_STRING    "0.4.5"
+#define EW32_BASE_VERSION           0x000405
 
 #ifndef EW32_FREERTOS_ON_CORE
 #define EW32_FREERTOS_ON_CORE 0
