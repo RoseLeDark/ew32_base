@@ -5,7 +5,7 @@
 
 ew32_semaphore_t __logging_lock;
 
-int8_t __logging_handler(uint8_t level, const char* tag, const char* text) {
+int8_t __logging_handler(ew32_ui8_t level, const char* tag, const char* text) {
    Serial.printf("[%d:%s] %s", level, tag, text); return 0;
 }
 

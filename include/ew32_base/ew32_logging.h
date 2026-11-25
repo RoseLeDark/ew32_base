@@ -1,7 +1,29 @@
+/*
+ * SPDX-License-Identifier: EUPL-1.2
+ *
+ * Copyright (c) 2026 Amber-Sophia "RoseLeBlood" Schröck (gender:divers dey/deren )
+ *
+ * This file is part of ew32_devm.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.2 or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see:
+ * https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ */
+
 #pragma once
 
 #include <stdint.h>
 #include "ew32_config.h"
+#include "ew32_types.h"
+
 /* Log-Level Definitionen */
 
 
@@ -54,10 +76,10 @@
 extern "C" {
 #endif
 
-typedef int8_t (* logging_handler)(uint8_t level, const char* tag, const char* text);
+typedef int8_t (* logging_handler)(ew32_ui8_t level, const char* tag, const char* text);
 
 // return the number of the new handler, or -1 if no more handlers can be added
-int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLevel);
+int8_t xewLoggingInitEx(logging_handler handle, ew32_ui8_t minLevel, ew32_ui8_t maxLevel);
 /**
  * Zentrale Logging-Funktion.
  * 
@@ -66,7 +88,7 @@ int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLev
  * @param level Log-Level des Eintrags (z.B. EW32_LOGGING_LEVEL_INFO)
  * @return      0 bei Erfolg, Fehlercode ungleich 0 bei Fehlschlag
  */
-int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...);
+int8_t xewLoggingSerial(ew32_ui8_t level, const char* tag, const char* text, ...);
 
 /**
  * Setzt das minimale globale Log-Level. Eintrags-Level unterhalb
@@ -75,12 +97,12 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...);
  * @param level Das minimale auszugebende Log-Level
  * @return      0 bei Erfolg, Fehlercode ungleich 0 bei Fehlschlag
  */
-void xewSetLoggingLevel(uint8_t index, uint8_t minLevel, uint8_t maxLevel);
+void xewSetLoggingLevel(ew32_ui8_t index, ew32_ui8_t minLevel, ew32_ui8_t maxLevel);
 
 /**
  * Gibt das aktuell aktive minimale Log-Level zurück.
  */
-uint8_t xewGetLoggingLevel(uint8_t index);
+ew32_ui8_t xewGetLoggingLevel(ew32_ui8_t index);
 
 #ifdef __cplusplus
 }

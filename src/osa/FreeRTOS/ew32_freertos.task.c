@@ -55,11 +55,12 @@ extern "C" {
 
 
 
-void ew32_osa_task_init() {
-    #if EW32_TASKAPI_PLATFORM_SUB ==   2
+ew32_error_t ew32_osa_task_init() {
+    #if EW32_TASKAPI_PLATFORM_SUB ==  2
         TaskHandle_t _task;
         xTaskCreate(idle_task, "idle_task", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &_task);
 
+        if(_task == NULL) return EW32_ERROR_NULL;
 
         #if configUSE_CORE_AFFINITY && configNUMBER_OF_CORES > 1
             vTaskCoreAffinitySet(_task, EW32_FREERTOS_ON_CORE);
@@ -69,10 +70,12 @@ void ew32_osa_task_init() {
 
         vTaskStartScheduler ();
     #endif
+
+    return EW32_ERROR_OK;
 }
 
-ew32_error_t ew32_osa_task_create(ew32_task_handle task, uint16_t stackSize, uint8_t prio, const char* strName, 
-                             void* userdata, uint8_t core, ew32_osa_task_t* tk) {
+ew32_error_t ew32_osa_task_create(ew32_task_handle task, ew32_ui16_t stackSize, ew32_ui8_t prio, const char* strName, 
+                             void* userdata, ew32_ui8_t core, ew32_osa_task_t* tk) {
          BaseType_t _ret = 1;
 
     #if EW32_TASKAPI_PLATFORM_SUB ==   2
@@ -89,7 +92,7 @@ ew32_error_t ew32_osa_task_create(ew32_task_handle task, uint16_t stackSize, uin
 
 }
 
-ew32_error_t ew32_osa_task_delay(uint32_t delay) {
+ew32_error_t ew32_osa_task_delay(ew32_ui32_t delay) {
     #if EW32_TASKAPI_PLATFORM_SUB ==   2
         sleep_ms(delay);
     #else
@@ -102,7 +105,7 @@ ew32_error_t ew32_osa_task_suspend(ew32_osa_task_t task) {
     vTaskSuspend( task );
     return 0;
 }
-ew32_error_t ew32_osa_task_resume(ew32_osa_task_t task, uint8_t isr) {
+ew32_error_t ew32_osa_task_resume(ew32_osa_task_t task, ew32_ui8_t isr) {
     if(task == NULL) return EW32_DEVICE_ERROR_NULL;
 
     if(isr == EW32_YES) xTaskResumeFromISR(task);
@@ -126,13 +129,13 @@ ew32_error_t    ew32_osa_task_getbyname(const char* strName, ew32_osa_task_t* ta
     
 }
 
-void ew32_osa_task_yield(uint8_t isr) {
+void ew32_osa_task_yield(ew32_ui8_t isr) {
     if(isr == EW32_YES)  portYIELD_FROM_ISR();
     else portYIELD();
 
 }
 
-ew32_osa_task_t  ew32_osa_task_current(uint8_t isr) {
+ew32_osa_task_t  ew32_osa_task_current(ew32_ui8_t isr) {
     return xTaskGetCurrentTaskHandle();
 }
 void     ew32_osa_task_destroy(ew32_osa_task_t task) {
@@ -141,18 +144,18 @@ void     ew32_osa_task_destroy(ew32_osa_task_t task) {
     vTaskDelete(task);
 }
 
-uint32_t        ew32_osa_task_getstate(ew32_osa_task_t task) {
-    return (uint32_t)eTaskGetState(task);
+ew32_ui32_t        ew32_osa_task_getstate(ew32_osa_task_t task) {
+    return (ew32_ui32_t)eTaskGetState(task);
 }
-ew32_error_t    ew32_osa_task_setprio(ew32_osa_task_t task, uint8_t prio) {
+ew32_error_t    ew32_osa_task_setprio(ew32_osa_task_t task, ew32_ui8_t prio) {
     if(task == NULL) return EW32_DEVICE_ERROR_NULL;
     vTaskPrioritySet(task, prio);
     return 0;
 }
-uint8_t         ew32_osa_task_getprio(ew32_osa_task_t task, uint8_t isr) {
+ew32_ui8_t         ew32_osa_task_getprio(ew32_osa_task_t task, ew32_ui8_t isr) {
     if(task == NULL) return EW32_DEVICE_ERROR_NULL;
 
-    uint8_t _ret = (isr == EW32_YES) ? 
+    ew32_ui8_t _ret = (isr == EW32_YES) ? 
         uxTaskPriorityGetFromISR(task) : 
         uxTaskPriorityGet(task);
 

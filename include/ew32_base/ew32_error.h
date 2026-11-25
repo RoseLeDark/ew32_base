@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include "ew32_config.h"
+#include "ew32_version.h"
 
 /** @name Error and Status Codes */
 /// @{

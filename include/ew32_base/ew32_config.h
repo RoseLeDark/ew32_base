@@ -1,3 +1,24 @@
+/*
+ * SPDX-License-Identifier: EUPL-1.2
+ *
+ * Copyright (c) 2026 Amber-Sophia "RoseLeBlood" Schröck (gender:divers dey/deren )
+ *
+ * This file is part of ew32_devm.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.2 or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see:
+ * https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ */
+
+ 
 #pragma once
 
 #include <stdint.h>
@@ -24,6 +45,9 @@
 
 /// @}
 
+#ifndef EW32_MAX_OPEN_FILES
+#define EW32_MAX_OPEN_FILES                     16
+#endif
 
 #ifndef EW32_LOGGING_NUMOFHANDLER
 #define EW32_LOGGING_NUMOFHANDLER                   2 
@@ -49,12 +73,7 @@
 
 
 /// ================ DO NOT EDIT AFTER THIS LINE ================
-#define EW32_BASE_VERSION_MAYOR     0
-#define EW32_BASE_VERSION_MINOR     4
-#define EW32_BASE_VERSION_SUB       5
 
-#define EW32_BASE_VERSION_STRING    "0.4.5"
-#define EW32_BASE_VERSION           0x000405
 
 #ifndef EW32_FREERTOS_ON_CORE
 #define EW32_FREERTOS_ON_CORE 0
@@ -64,12 +83,4 @@
 #error "No Platform Defined, please set build flag -DEW32_PLATFORM={PLATFORMID}" 
 #endif
 
-#define EW32_WEAK           __attribute__((weak))
-#define EW32_WEAK_INLINE    __attribute__((weak, always_inline)) inline
-#define EW32_PACKED         __attribute__((packed))
 
-
-typedef uint8_t             ew32_bool_t;
-
-#define ewTRUE              1
-#define ewFALSE             0

@@ -39,7 +39,7 @@ ew32_semaphore_t ew32_osa_smph_mutex_create() {
 ew32_semaphore_t ew32_osa_smph_binary_create() {
     return xSemaphoreCreateBinary();
 }
-ew32_semaphore_t ew32_osa_smph_counting_create(uint32_t baseCount, uint32_t startCount)  {
+ew32_semaphore_t ew32_osa_smph_counting_create(ew32_ui32_t baseCount, ew32_ui32_t startCount)  {
     return xSemaphoreCreateCounting(baseCount, startCount);
 
 }
@@ -50,7 +50,7 @@ ew32_error_t ew32_osa_smph_desroy(ew32_semaphore_t handle) {
 }
 
 
-ew32_error_t ew32_osa_smph_lock_ex(ew32_semaphore_t handle, int32_t timeout, uint8_t isr) {
+ew32_error_t ew32_osa_smph_lock_ex(ew32_semaphore_t handle, ew32_i32_t timeout, ew32_ui8_t isr) {
     ew32_error_t _ret = EW32_ERROR;
 
     if(handle == NULL) return EW32_ERROR_NULL;
@@ -71,7 +71,7 @@ ew32_error_t ew32_osa_smph_lock_ex(ew32_semaphore_t handle, int32_t timeout, uin
     }
     return _ret;
 }
-ew32_error_t ew32_osa_smph_unlock_ex(ew32_semaphore_t handle, uint8_t isr) {
+ew32_error_t ew32_osa_smph_unlock_ex(ew32_semaphore_t handle, ew32_ui8_t isr) {
     ew32_error_t _ret = EW32_ERROR;
 
     if(isr == EW32_YES) { 
@@ -91,7 +91,7 @@ ew32_error_t ew32_osa_smph_unlock_ex(ew32_semaphore_t handle, uint8_t isr) {
     return _ret;
 }
 
-uint32_t     ew32_osa_smph_getcount(ew32_semaphore_t handle) {
+ew32_ui32_t     ew32_osa_smph_getcount(ew32_semaphore_t handle) {
     return uxSemaphoreGetCount(handle);
 }
 
@@ -101,7 +101,7 @@ ew32_semaphore_t ew32_osa_smph_recursive_create() {
     return xSemaphoreCreateRecursiveMutex();
 }
 
-ew32_error_t ew32_osa_smph_recursive_lock_ex(ew32_semaphore_t handle, int32_t timeout) {
+ew32_error_t ew32_osa_smph_recursive_lock_ex(ew32_semaphore_t handle, ew32_i32_t timeout) {
     ew32_error_t _ret = EW32_ERROR;
 
     if(handle == NULL) return EW32_ERROR_NULL;
@@ -126,7 +126,7 @@ ew32_error_t ew32_osa_smph_recursive_unlock_ex(ew32_semaphore_t handle) {
     return _ret;
 }
 
-ew32_bool_t ew32_osa_semph_ifowner(ew32_semaphore_t handle, ew32_osa_task_t task, const uint8_t isr) {
+ew32_bool_t ew32_osa_semph_ifowner(ew32_semaphore_t handle, ew32_osa_task_t task, const ew32_ui8_t isr) {
     ew32_osa_task_t _ownerTask;
 
     if(isr == EW32_YES) {

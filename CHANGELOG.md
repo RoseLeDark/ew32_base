@@ -1,20 +1,29 @@
 # Changelog
-## Version 0.4.5
-## Changed
+
+## Version 0.5.01
+### Add
+- Add new Types and remove bugs in osa level in rpi core task init system 
+- Add ew32_version.h and ew32_types.h
+
+!! PLEASE UPDATE TO VERSION 0.5.01 !!
+---
+## 
+## Version 0.4.51
+### Changed
 - Spinlock is now in osa, "ew32_base/osa/ew32_osa_spinlock.h" rema,e functions ew32_osa_spinlock_{init, lock, unlock} add defines for old api name 
 - rename "ew32_base/osa/ew32_api.h" to "ew32_base/osa/ew32_osa_api.h"
 
 ---
 ## Version 0.4.0
 
-## Changed
+### Changed
 - Change the ew32_api system. ew32_task rename to ew32_osa_task_... and the semaphore api ew32_mutex to ew32_osa_smph_ .. 
 - Changed the API for creating a semaphore type from `ew32_semaphore_create(TYPE)` to:
    - `ew32_semaphore_t ew32_osa_smph_mutex_create();`
    - `ew32_semaphore_t ew32_osa_smph_binary_create();`
    - `ew32_semaphore_t ew32_osa_smph_counting_create(uint32_t baseCount, uint32_t startCount);`
    
-## Add
+### Add
 - Add Operationg System API (OSA) - see directory ew32_base/include/ew32_base/osa/ew32_api.h:
    - This file include the right header for used platform
 - Add typedef `ew32_bool_t` with ewTRUE : 1 and ewFALSE : 0
@@ -33,13 +42,13 @@
 
 ## Version 0.3.2
 
-## Add
+### Add
 add `EW32_PLATFORM_ARDUINO_ESP32` to `ew32_config.h` (board esp32)
 add `EW32_LOGGING_MIN_LEVEL` to `ew32_config.h`:
    - when build with ``build_flag = ... -D_DEBUG=1`` then set `EW32_LOGGING_MIN_LEVEL` to `EW32_LOGGING_LEVEL_DEBUG`
    - without `-D_DEBUG=1`  then set `EW32_LOGGING_MIN_LEVEL` to `EW32_LOGGING_LEVEL_WARNING`
 
-## Changed
+### Changed
 changed `EW32_PLATFORM_STM32` from 3 to 4
 changed `EW32_PLATFORM_RPPICO` from 4 to 5 
 

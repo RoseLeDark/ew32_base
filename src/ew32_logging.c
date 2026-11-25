@@ -12,8 +12,8 @@
 
 struct logging_handler_struct {
     logging_handler handle;
-    uint8_t minLevel;
-    uint8_t maxLevel;
+    ew32_ui8_t minLevel;
+    ew32_ui8_t maxLevel;
     #if EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_ATOMIC
     ew32_spinlock_t lock;
     #elif EW32_LOGGING_LOCKAPI == EW32_LOGGING_LOCKAPI_MUTEX
@@ -21,10 +21,10 @@ struct logging_handler_struct {
     #endif
 };
 struct logging_handler_struct ___ew32_logging_handle[EW32_LOGGING_NUMOFHANDLER] = {NULL};
-uint8_t __index = 0;
+ew32_ui8_t __index = 0;
 
 
-int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLevel) {
+int8_t xewLoggingInitEx(logging_handler handle, ew32_ui8_t minLevel, ew32_ui8_t maxLevel) {
     
     if(__index >= EW32_LOGGING_NUMOFHANDLER) return -1;
 
@@ -43,7 +43,7 @@ int8_t xewLoggingInitEx(logging_handler handle, uint8_t minLevel, uint8_t maxLev
 
     return _ret;
 }
-int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
+int8_t xewLoggingSerial(ew32_ui8_t level, const char* tag, const char* text, ...) {
     if( EW32_LOGGING_MIN_LEVEL > level) return 1;
 
 
@@ -96,14 +96,14 @@ int8_t xewLoggingSerial(uint8_t level, const char* tag, const char* text, ...) {
     return 0;
 }
 
-void xewSetLoggingLevel(uint8_t index, uint8_t minLevel, uint8_t maxLevel) {
+void xewSetLoggingLevel(ew32_ui8_t index, ew32_ui8_t minLevel, ew32_ui8_t maxLevel) {
     if(index < EW32_LOGGING_NUMOFHANDLER) {
         ___ew32_logging_handle[index].minLevel =  (EW32_LOGGING_MIN_LEVEL <= minLevel) ? EW32_LOGGING_MIN_LEVEL : minLevel;
         ___ew32_logging_handle[index].maxLevel = maxLevel;
     }
 }
 
-uint8_t xewGetLoggingLevel(uint8_t index) {
+ew32_ui8_t xewGetLoggingLevel(ew32_ui8_t index) {
     if(index < EW32_LOGGING_NUMOFHANDLER) {
         return ___ew32_logging_handle[index].minLevel;
     }
