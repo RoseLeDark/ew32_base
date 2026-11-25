@@ -21,8 +21,8 @@
 #pragma once
 
 #define EW32_BASE_VERSION_MAYOR     0
-#define EW32_BASE_VERSION_MINOR     4
-#define EW32_BASE_VERSION_SUB       5
+#define EW32_BASE_VERSION_MINOR     5
+#define EW32_BASE_VERSION_SUB       01
 
-#define EW32_BASE_VERSION_STRING    "0.4.5"
-#define EW32_BASE_VERSION           0x000405
+#define EW32_BASE_VERSION_STRING    "0.5.01"
+#define EW32_BASE_VERSION           0x000501
